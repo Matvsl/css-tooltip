@@ -1,28 +1,24 @@
-/* Style générique pour les tooltips */
-[data-tooltip] {
-  position: relative;
-}
-
-[data-tooltip]::after {
-  content: attr(data-tooltip);
+/* On cache le tooltip par défaut */
+.search-button[data-tooltip]:hover::after {
+  content: attr(data-tooltip); /* Utilise le texte de l'attribut data-tooltip */
   position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  white-space: nowrap;
-  background-color: var(--neutral);
-  color: var(--textColor);
-  padding: 5px 8px;
-  border-radius: 6px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  margin-left: 10px;
-  z-index: 10;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.8); /* Fond sombre */
+  color: white; /* Texte en blanc */
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  white-space: nowrap; /* Empêche le texte de se couper */
+  z-index: 1000;
+  top: 100%; /* Affichage juste en dessous du bouton */
+  left: 50%; /* Centré horizontalement */
+  transform: translateX(-50%); /* Correction du centrage */
+  opacity: 0; /* Commence invisible */
+  visibility: hidden; /* Caché par défaut */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-[data-tooltip]:hover::after {
-  opacity: 1;
-  transform: translateY(-50%) translateX(5px);
+/* Lors du survol, on affiche le tooltip */
+.search-button[data-tooltip]:hover::after {
+  opacity: 1; /* Rendre visible */
+  visibility: visible; /* Rendre visible */
 }
